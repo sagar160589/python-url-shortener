@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+<html>
+<head>
+{% block title %}Create Short URL's {% endblock %}
+</head>
+{% block content %}
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Create Short URL's for your business</h1>
+        {{wtf.quick_form(short_url_form)}}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+       {% if short_url %}
+        <h2>Short URL is: {{short_url}}</h2>
+        {% endif %}
+    </div>
+    <div class="container">
+
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>
